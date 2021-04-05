@@ -1,0 +1,12 @@
+server:
+  port: 8016
+
+spring:
+  data:
+    mongodb:
+      host: localhost
+      port: 27017
+      database: realcoding-16
+      authentication-database: admin
+      username: dayeon
+      password: tngus3514!
