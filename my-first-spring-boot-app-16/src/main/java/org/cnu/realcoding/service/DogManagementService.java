@@ -26,15 +26,15 @@ public class DogManagementService {
                 .findOne(
                         Query.query(Criteria.where("name").is(dog.getName())),
                         Dog.class
-                ) != null || mongoTemplate
+                ) == null && mongoTemplate
                 .findOne(
                         Query.query(Criteria.where("ownerName").is(dog.getOwnerName())),
                         Dog.class
-                ) != null || mongoTemplate
+                ) == null && mongoTemplate
                 .findOne(
                         Query.query(Criteria.where("ownerPhoneNumber").is(dog.getOwnerPhoneNumber())),
                         Dog.class
-                ) != null
+                ) == null
         ){
             dogRepository.insertDog(dog);
         }
@@ -49,14 +49,15 @@ public class DogManagementService {
 //        }
     }
 
-    public Dog getDogByName(String name) {
-       Dog dog = dogRepository.findDog(name);
+    public Dog searchDog(String name, String ownerName, String ownerPhoneNumber){
+        Dog dog = dogRepository.findDog(name, ownerName, ownerPhoneNumber);
 
-       if(dog == null){
-           throw new DogNotFoundException();
-       }
-       return dog;
+        if(dog == null){
+            throw new DogNotFoundException();
+        }
+        return dog;
     }
+
 
     public Dog getDogByName(String name) {
        Dog dog = dogRepository.findDogByName(name);
@@ -83,9 +84,5 @@ public class DogManagementService {
             throw new DogNotFoundException();
         }
         return dog;
-    }
-
-    public void updateDog(String prevName, String newName, String newKind, String newOwnerName, String newOwnerPhoneNumber, String addMedicalRecords) {
-        dogRepository.updateDog(prevName, newName, newKind, newOwnerName, newOwnerPhoneNumber, addMedicalRecords);
     }
 }

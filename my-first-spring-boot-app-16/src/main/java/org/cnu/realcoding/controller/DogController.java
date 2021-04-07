@@ -20,9 +20,9 @@ public class DogController {
         dogManagementService.insertDog(dog);
     }
 
-    @GetMapping("/dogs")
-    public void getDog(@RequestBody Dog dog){
-        dogManagementService.searchDog(dog);
+    @GetMapping("/dogs/find/{name}/{ownerName}/{ownerPhoneNumber}")
+    public Dog getDog(@PathVariable String name, @PathVariable String ownerName, @PathVariable String ownerPhoneNumber){
+        return dogManagementService.searchDog(name, ownerName, ownerPhoneNumber);
     }
 
     @GetMapping("/dogs/findByName/{name}")
@@ -38,10 +38,5 @@ public class DogController {
     @GetMapping("/dogs/findByOwnerPhoneNumber/{ownerPhoneNumber}")
     public Dog getDogByOwnerPhoneNumber(@PathVariable String ownerPhoneNumber){
         return dogManagementService.getDogByOwnerPhoneNumber(ownerPhoneNumber);
-    }
-
-    @PutMapping("/dogs/{prevName}/{newName}/{newKind}/{newOwnerName}/{newOwnerPhoneNumber}/{addMedicalRecords}")
-    public void updateDogInform(@PathVariable String prevName, @PathVariable String newName, @PathVariable String newKind, @PathVariable String newOwnerName, @PathVariable String newOwnerPhoneNumber, @PathVariable String addMedicalRecords){
-        dogManagementService.updateDog(prevName,newName,newKind,newOwnerName,newOwnerPhoneNumber,addMedicalRecords);
     }
 }
