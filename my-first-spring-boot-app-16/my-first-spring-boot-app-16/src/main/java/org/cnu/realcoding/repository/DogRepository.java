@@ -12,15 +12,11 @@ public class DogRepository {
     @Autowired
     private MongoTemplate mongoTemplate;
 
-    public Dog findDog(String name, String ownerName, String ownerPhoneNumber) {
-        Query query = new Query();
-        Criteria criteria = new Criteria();
-        criteria.andOperator(Criteria.where("name").is(name),Criteria.where("ownerName").is(ownerName),Criteria.where("ownerPhoneNumber").is(ownerPhoneNumber));
-        query.addCriteria(criteria);
+    public Dog findDog(String name){
         return mongoTemplate
                 .findOne(
-                        query,
-                        Dog.class
+                        Query.query(Criteria.where("name").is(name)),
+                    Dog.class
                 );
     }
 
@@ -31,7 +27,7 @@ public class DogRepository {
         );
     }
 
-    public Dog findDogByName(String name){
+    public Dog findName(String name){
         return mongoTemplate
                 .findOne(
                         Query.query(Criteria.where("name").is(name)),
@@ -39,7 +35,7 @@ public class DogRepository {
                 );
     }
 
-    public Dog findDogByOwnerName(String ownerName){
+    public Dog findOwnerName(String ownerName){
         return mongoTemplate
                 .findOne(
                         Query.query(Criteria.where("ownerName").is(ownerName)),
@@ -47,10 +43,10 @@ public class DogRepository {
                 );
     }
 
-    public Dog findDogByOwnerPhoneNumber(String ownerPhoneNumber){
+    public Dog findPhoneNum(String PhoneNum){
         return mongoTemplate
                 .findOne(
-                        Query.query(Criteria.where("ownerPhoneNumber").is(ownerPhoneNumber)),
+                        Query.query(Criteria.where("ownerPhoneNumber").is(PhoneNum)),
                         Dog.class
                 );
     }
