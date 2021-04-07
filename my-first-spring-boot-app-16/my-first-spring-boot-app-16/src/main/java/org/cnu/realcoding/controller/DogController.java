@@ -20,15 +20,15 @@ public class DogController {
         dogManagementService.insertDog(dog);
     }
 
-    @GetMapping("/dogs")
-    public void getDog(@RequestBody Dog dog){
-        dogManagementService.searchDog(dog);
+    @GetMapping("/dogs/find/{name}/{ownerName}/{ownerPhoneNumber}")
+    public Dog getDog(@PathVariable String name, @PathVariable String ownerName, @PathVariable String ownerPhoneNumber){
+        return dogManagementService.searchDog(name, ownerName, ownerPhoneNumber);
     }
 
-    // localhost:8080/dogs/ian
-    @GetMapping("/dogs/{name}")
-    public Dog getDogByName(@PathVariable String name){
-        return dogManagementService.getDogByName(name);
-    }
+//    // localhost:8080/dogs/ian
+//    @GetMapping("/dogs/{name}")
+//    public Dog getDogByName(@PathVariable String name){
+//        return dogManagementService.getDogByName(name);
+//    }
 
 }
