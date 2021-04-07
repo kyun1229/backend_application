@@ -1,6 +1,5 @@
 package org.cnu.realcoding.service;
 
-import lombok.Getter;
 import org.cnu.realcoding.domain.Dog;
 import org.cnu.realcoding.exception.DogNotFoundException;
 import org.cnu.realcoding.repository.DogRepository;
@@ -9,9 +8,6 @@ import org.springframework.data.mongodb.core.MongoTemplate;
 import org.springframework.data.mongodb.core.query.Criteria;
 import org.springframework.data.mongodb.core.query.Query;
 import org.springframework.stereotype.Service;
-
-import java.util.ArrayList;
-import java.util.List;
 
 @Service
 public class DogManagementService {
@@ -41,12 +37,6 @@ public class DogManagementService {
         else{
             throw new DogNotFoundException();
         }
-//        if(dogRepository.findName(dog.getName())!=null || dogRepository.findOwnerName(dog.getOwnerName())!=null || dogRepository.findPhoneNum(dog.getOwnerPhoneNumber())!=null){
-//            dogRepository.insertDog(dog);
-//        }
-//        else{
-//            throw new DogNotFoundException();
-//        }
     }
 
     public Dog searchDog(String name, String ownerName, String ownerPhoneNumber){
