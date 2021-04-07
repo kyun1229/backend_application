@@ -39,7 +39,7 @@ public class DogRepository {
                 );
     }
 
-    public Dog findOwnerName(String ownerName){
+    public Dog findDogByOwnerName(String ownerName){
         return mongoTemplate
                 .findOne(
                         Query.query(Criteria.where("ownerName").is(ownerName)),
@@ -47,10 +47,10 @@ public class DogRepository {
                 );
     }
 
-    public Dog findPhoneNum(String PhoneNum){
+    public Dog findDogByOwnerPhoneNumber(String ownerPhoneNumber){
         return mongoTemplate
                 .findOne(
-                        Query.query(Criteria.where("ownerPhoneNumber").is(PhoneNum)),
+                        Query.query(Criteria.where("ownerPhoneNumber").is(ownerPhoneNumber)),
                         Dog.class
                 );
     }

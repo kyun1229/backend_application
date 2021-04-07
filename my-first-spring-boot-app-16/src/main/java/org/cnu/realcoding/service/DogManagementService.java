@@ -67,4 +67,22 @@ public class DogManagementService {
        }
        return dog;
     }
+
+    public Dog getDogByOwnerName(String ownerName) {
+        Dog dog = dogRepository.findDogByOwnerName(ownerName);
+
+        if(dog == null){
+            throw new DogNotFoundException();
+        }
+        return dog;
+    }
+
+    public Dog getDogByOwnerPhoneNumber(String ownerPhoneNumber) {
+        Dog dog = dogRepository.findDogByOwnerPhoneNumber(ownerPhoneNumber);
+
+        if(dog == null){
+            throw new DogNotFoundException();
+        }
+        return dog;
+    }
 }
