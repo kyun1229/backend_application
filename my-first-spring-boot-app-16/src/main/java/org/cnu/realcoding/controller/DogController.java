@@ -25,10 +25,18 @@ public class DogController {
         return dogManagementService.searchDog(name, ownerName, ownerPhoneNumber);
     }
 
-//    // localhost:8080/dogs/ian
-//    @GetMapping("/dogs/{name}")
-//    public Dog getDogByName(@PathVariable String name){
-//        return dogManagementService.getDogByName(name);
-//    }
+    @GetMapping("/dogs/findByName/{name}")
+    public Dog getDogByName(@PathVariable String name){
+        return dogManagementService.getDogByName(name);
+    }
 
+    @GetMapping("/dogs/findByOwnerName/{ownerName}")
+    public Dog getDogByOwnerName(@PathVariable String ownerName){
+        return dogManagementService.getDogByOwnerName(ownerName);
+    }
+
+    @GetMapping("/dogs/findByOwnerPhoneNumber/{ownerPhoneNumber}")
+    public Dog getDogByOwnerPhoneNumber(@PathVariable String ownerPhoneNumber){
+        return dogManagementService.getDogByOwnerPhoneNumber(ownerPhoneNumber);
+    }
 }
