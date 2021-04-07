@@ -99,6 +99,24 @@ public class DogRepository {
         );
     }
 
+    public void updateMedicalRecords(String name, String addMedicalRecords) {
+        Query query = new Query(Criteria.where("name").is(name));
+
+        Dog prev = mongoTemplate
+                .findOne(
+                        query,
+                        Dog.class
+                );
+
+        if(prev == null){
+            throw new DogNotFoundException();
+        }
+
+        List medical = prev.getMedicalRecords();
+        medical.add(addMedicalRecords);
+        mongoTemplate.updateFirst(query, Update.update("medicalRecords", medical), Dog.class);
+    }
+
     public void insertDog(Dog dog) {
         mongoTemplate.insert(dog);
     }

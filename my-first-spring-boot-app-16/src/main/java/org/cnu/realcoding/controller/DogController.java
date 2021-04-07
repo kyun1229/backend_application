@@ -6,8 +6,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.List;
-
 @RestController
 public class DogController {
 
@@ -48,5 +46,10 @@ public class DogController {
     @PatchMapping("/dogs/updateKind/{name}/{kind}")
     public void updateKind(@PathVariable String name, @PathVariable String kind) {
         dogManagementService.updateKind(name, kind);
+    }
+
+    @PatchMapping("/dogs/updateMedicalRecords/{name}/{addMedicalRecords}")
+    public void updateMedicalRecords(@PathVariable String name, @PathVariable String addMedicalRecords) {
+        dogManagementService.updateMedicalRecords(name, addMedicalRecords);
     }
 }

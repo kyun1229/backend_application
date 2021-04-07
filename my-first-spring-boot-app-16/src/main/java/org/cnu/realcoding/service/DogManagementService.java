@@ -1,7 +1,7 @@
 package org.cnu.realcoding.service;
 
-import lombok.Getter;
 import org.cnu.realcoding.domain.Dog;
+import org.cnu.realcoding.exception.DogExistException;
 import org.cnu.realcoding.exception.DogNotFoundException;
 import org.cnu.realcoding.repository.DogRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,9 +9,6 @@ import org.springframework.data.mongodb.core.MongoTemplate;
 import org.springframework.data.mongodb.core.query.Criteria;
 import org.springframework.data.mongodb.core.query.Query;
 import org.springframework.stereotype.Service;
-
-import java.util.ArrayList;
-import java.util.List;
 
 @Service
 public class DogManagementService {
@@ -39,14 +36,8 @@ public class DogManagementService {
             dogRepository.insertDog(dog);
         }
         else{
-            throw new DogNotFoundException();
+            throw new DogExistException();
         }
-//        if(dogRepository.findName(dog.getName())!=null || dogRepository.findOwnerName(dog.getOwnerName())!=null || dogRepository.findPhoneNum(dog.getOwnerPhoneNumber())!=null){
-//            dogRepository.insertDog(dog);
-//        }
-//        else{
-//            throw new DogNotFoundException();
-//        }
     }
 
     public Dog searchDog(String name, String ownerName, String ownerPhoneNumber){
@@ -92,5 +83,9 @@ public class DogManagementService {
 
     public void updateKind(String name, String kind) {
         dogRepository.updateKind(name, kind);
+    }
+
+    public void updateMedicalRecords(String name, String addMedicalRecords) {
+        dogRepository.updateMedicalRecords(name, addMedicalRecords);
     }
 }
